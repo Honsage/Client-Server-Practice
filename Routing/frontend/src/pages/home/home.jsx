@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "@components/header/header";
+import styles from "./home.module.css";
 
 const HomePage = () => {
     return (
         <div>
-            <Header />
+            <h1 className={styles.title}>Добро пожаловать!</h1>
+            <p className={styles.text}>Это главная страница онлайн-библиотеки.</p>
         </div>
     );
 }
