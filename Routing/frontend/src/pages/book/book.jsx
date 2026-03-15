@@ -1,13 +1,12 @@
 import React from "react";
-import Header from "@components/header/header";
+import BookCard from "@components/book-card/book-card";
 
 const BookPage = () => {
     const { id } = useParams();
 
     return (
         <div>
-            <Header />
-            <Footer />
+            <BookCard />
         </div>
     );
 };
