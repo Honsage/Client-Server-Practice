@@ -11,7 +11,7 @@ const CatalogPage = () => {
                     <BookCard
                         id={book.id}
                         name={book.name}
-                        description={book.description}
+                        author={book.author}
                     />
                 ))}   
             </section>
