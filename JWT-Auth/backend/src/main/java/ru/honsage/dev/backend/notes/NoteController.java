@@ -29,13 +29,17 @@ public class NoteController {
     @PutMapping("/{id}")
     public Note update(
             @PathVariable Long id,
-            @RequestBody String content
+            @RequestBody String content,
+            Authentication auth
     ) {
-        return noteService.update(id, content);
+        return noteService.update(id, content, auth.getName());
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        noteService.delete(id);
+    public void delete(
+            @PathVariable Long id,
+            Authentication auth
+    ) {
+        noteService.delete(id, auth.getName());
     }
 }

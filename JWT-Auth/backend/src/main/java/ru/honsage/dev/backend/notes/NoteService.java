@@ -13,8 +13,9 @@ public class NoteService {
     private final NoteRepository noteRepository;
     private final UserRepository userRepository;
 
-    public Note create(String username, String content) {
-        User user = userRepository.findByUsername(username).orElseThrow();
+    public Note create(String content, String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow();
 
         Note note = Note.builder()
                 .content(content)
@@ -24,18 +25,30 @@ public class NoteService {
         return noteRepository.save(note);
     }
 
-    public List<Note> getUserNotes(String username) {
-        User user = userRepository.findByUsername(username).orElseThrow();
-        return noteRepository.findByUserId(user.getId());
-    }
+    public Note update(Long id, String content, String username) {
+        Note note = noteRepository.findById(id)
+                .orElseThrow();
 
-    public Note update(Long id, String content) {
-        Note note = noteRepository.findById(id).orElseThrow();
+        if (!note.getUser().getUsername().equals(username)) {
+            throw new RuntimeException("Access denied");
+        }
+
         note.setContent(content);
         return noteRepository.save(note);
     }
 
-    public void delete(Long id) {
-        noteRepository.deleteById(id);
+    public void delete(Long id, String username) {
+        Note note = noteRepository.findById(id)
+                .orElseThrow();
+
+        if (!note.getUser().getUsername().equals(username)) {
+            throw new RuntimeException("Access denied");
+        }
+
+        noteRepository.delete(note);
+    }
+
+    public List<Note> getUserNotes(String username) {
+        return noteRepository.findAllByUserUsername(username);
     }
 }
