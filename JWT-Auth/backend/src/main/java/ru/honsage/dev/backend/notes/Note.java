@@ -5,6 +5,7 @@ import lombok.*;
 import ru.honsage.dev.backend.user.User;
 
 @Entity
+@Table(name = "notes")
 @Getter
 @Setter
 @Builder

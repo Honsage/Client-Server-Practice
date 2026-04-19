@@ -14,25 +14,30 @@ public class NoteController {
     private final NoteService noteService;
 
     @PostMapping
-    public Note create(
-            @RequestBody String content,
+    public NoteResponse create(
+            @RequestBody NoteRequest request,
             Authentication auth
     ) {
-        return noteService.create(auth.getName(), content);
+        var note = noteService.create(request.getContent(), auth.getName());
+        return new NoteResponse(note.getId(), note.getContent());
     }
 
     @GetMapping
-    public List<Note> getAll(Authentication auth) {
-        return noteService.getUserNotes(auth.getName());
+    public List<NoteResponse> getAll(Authentication auth) {
+        return noteService.getUserNotes(auth.getName())
+                .stream()
+                .map(n -> new NoteResponse(n.getId(), n.getContent()))
+                .toList();
     }
 
     @PutMapping("/{id}")
-    public Note update(
+    public NoteResponse update(
             @PathVariable Long id,
-            @RequestBody String content,
+            @RequestBody NoteRequest request,
             Authentication auth
     ) {
-        return noteService.update(id, content, auth.getName());
+        var note = noteService.update(id, request.getContent(), auth.getName());
+        return new NoteResponse(note.getId(), note.getContent());
     }
 
     @DeleteMapping("/{id}")
