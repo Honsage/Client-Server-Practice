@@ -6,6 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.honsage.dev.backend.security.JwtService;
+import ru.honsage.dev.backend.user.Role;
 import ru.honsage.dev.backend.user.User;
 import ru.honsage.dev.backend.user.UserRepository;
 
@@ -21,7 +22,7 @@ public class AuthService {
         User user = User.builder()
                 .username(request.getUsername())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .role("USER")
+                .role(Role.USER)
                 .build();
 
         userRepository.save(user);
