@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { notesStore } from '../../stores/notesStore';
+import { notesStore } from '@stores/notesStore';
 import styles from './notes.module.css';
 
 const NotesPage = observer(() => {
@@ -33,7 +33,7 @@ const NotesPage = observer(() => {
 
       <div className={styles.notesList}>
         {notesStore.notes.length === 0 ? (
-          <p className={styles.empty}>Пока нет заметок. Создайте первую!</p>
+          <p className={styles.empty}>У Вас еще нет заметок. Создайте их!</p>
         ) : (
           notesStore.notes.map((note) => (
             <div key={note.id} className={styles.noteCard}>

@@ -1,4 +1,7 @@
-.header { background: #9be0aa; padding: 0 20px; }
+.header {
+    background: #9be0aa;
+    padding: 0 20px;
+}
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -21,7 +24,12 @@
 }
 .link:hover { text-decoration: underline; }
 .link.active { font-weight: bold; }
-.user { font-weight: bold; margin-right: 15px; }
+.user {
+    font-weight: bold;
+    margin-right: 15px;
+    color: #0d4219;
+    font-size: 1.3rem;
+}
 .logoutBtn {
     background: #ff6b6b;
     color: white;

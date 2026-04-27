@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import { authStore } from '../../stores/authStore';
+import { authStore } from '@stores/authStore';
 import styles from './header.module.css';
 
 const Header = observer(() => {
