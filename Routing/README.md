@@ -1,4 +1,6 @@
-# Routing Practice
+# Library
+
+Project aimed to practice props, components and routing.
 
 ## Pages
 
